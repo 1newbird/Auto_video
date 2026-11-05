@@ -1,0 +1,176 @@
+{
+  "schemaVersion": 1,
+  "sourcePath": "D:\\documents\\SKILL.md",
+  "originalSha256": "32b499f462174882c5d0b52ebcfba7c5325c52ddae3daa7ab8eaf3b66ef1f0a5",
+  "selection": {
+    "start": "今天分享harness",
+    "endBefore": "很简单的一个流程"
+  },
+  "normalization": "Remove Markdown headings/list markers/emphasis/code delimiters and zero-width characters; normalize whitespace. No wording rewrite.",
+  "sha256": "c8bf70d944b68b0c2399206ddf3058a018c5846d1eae802b0e95b61ae909d975",
+  "text": "今天分享harness中的SKILL加载机制，怎么实现，需要注意什么；\n上一个视频讲了skill的构成以及怎么写好一个skill，这里简单回顾一下，一个Skill的组成如下：\n/skill-dir：skill的一个目录，比如ppt-write\nSKILL.md：主体，且必需，字母大写；\n其他配套文件目录，或者文件，比如:references，scripts，assets\nSKILL.md里面结构如下：\nname：skill的名字，遵循英文字符，小写字母，连字符，数字组合构成，比如ppt-write\ndescription：skill描述，要求准确但是不要冗余；\n正文\n前面说过，skill是渐进式加载的，在智能体里面是按需读取skill，那具体在构建harness的时候是怎么实现的呢，之前解释过 agent harness的概念，这里再简单讲一下，把 Harness 理解为负责组织模型输入、调用工具、管理运行状态的那层程序，大家不要纠结于harness的定义，每一个厂商对其的定义都不一样，openai和anthropic都不一样，我们只需要理解，要设计一个agent，让他完成任务运行起来，要做什么，开发那些功能就好了；\n参考CC和codex，我们可以把模型自动选择skill的流程总结为以下几步：\n用户输入\nHarness扫描约定的 Skill 位置，解析名称、描述、路径等信息（harness逻辑实现，可以简单理解为硬编码实现）\n首次LLM得到的输入：用户请求+skill简介清单（skill名字和描述列表，和对应的位置）\nLLM推理，选择是否需要加载skill，需要则调用工具定向读取对应skill的正文描述，并返回\nLLM按照skill正文详细说明执行任务，根据需求，判断是否需要调用工具读取其他配套文件，比如references下的参考文档等",
+  "segments": [
+    {
+      "id": "s001",
+      "start": 0,
+      "end": 36,
+      "text": "今天分享harness中的SKILL加载机制，怎么实现，需要注意什么；\n"
+    },
+    {
+      "id": "s002",
+      "start": 36,
+      "end": 74,
+      "text": "上一个视频讲了skill的构成以及怎么写好一个skill，这里简单回顾一下，"
+    },
+    {
+      "id": "s003",
+      "start": 74,
+      "end": 88,
+      "text": "一个Skill的组成如下：\n"
+    },
+    {
+      "id": "s004",
+      "start": 88,
+      "end": 122,
+      "text": "/skill-dir：skill的一个目录，比如ppt-write\n"
+    },
+    {
+      "id": "s005",
+      "start": 122,
+      "end": 144,
+      "text": "SKILL.md：主体，且必需，字母大写；\n"
+    },
+    {
+      "id": "s006",
+      "start": 144,
+      "end": 187,
+      "text": "其他配套文件目录，或者文件，比如:references，scripts，assets\n"
+    },
+    {
+      "id": "s007",
+      "start": 187,
+      "end": 203,
+      "text": "SKILL.md里面结构如下：\n"
+    },
+    {
+      "id": "s008",
+      "start": 203,
+      "end": 240,
+      "text": "name：skill的名字，遵循英文字符，小写字母，连字符，数字组合构成，"
+    },
+    {
+      "id": "s009",
+      "start": 240,
+      "end": 252,
+      "text": "比如ppt-write\n"
+    },
+    {
+      "id": "s010",
+      "start": 252,
+      "end": 284,
+      "text": "description：skill描述，要求准确但是不要冗余；\n"
+    },
+    {
+      "id": "s011",
+      "start": 284,
+      "end": 287,
+      "text": "正文\n"
+    },
+    {
+      "id": "s012",
+      "start": 287,
+      "end": 322,
+      "text": "前面说过，skill是渐进式加载的，在智能体里面是按需读取skill，"
+    },
+    {
+      "id": "s013",
+      "start": 322,
+      "end": 369,
+      "text": "那具体在构建harness的时候是怎么实现的呢，之前解释过 agent harness的概念，"
+    },
+    {
+      "id": "s014",
+      "start": 369,
+      "end": 417,
+      "text": "这里再简单讲一下，把 Harness 理解为负责组织模型输入、调用工具、管理运行状态的那层程序，"
+    },
+    {
+      "id": "s015",
+      "start": 417,
+      "end": 450,
+      "text": "大家不要纠结于harness的定义，每一个厂商对其的定义都不一样，"
+    },
+    {
+      "id": "s016",
+      "start": 450,
+      "end": 490,
+      "text": "openai和anthropic都不一样，我们只需要理解，要设计一个agent，"
+    },
+    {
+      "id": "s017",
+      "start": 490,
+      "end": 517,
+      "text": "让他完成任务运行起来，要做什么，开发那些功能就好了；\n"
+    },
+    {
+      "id": "s018",
+      "start": 517,
+      "end": 556,
+      "text": "参考CC和codex，我们可以把模型自动选择skill的流程总结为以下几步：\n"
+    },
+    {
+      "id": "s019",
+      "start": 556,
+      "end": 561,
+      "text": "用户输入\n"
+    },
+    {
+      "id": "s020",
+      "start": 561,
+      "end": 609,
+      "text": "Harness扫描约定的 Skill 位置，解析名称、描述、路径等信息（harness逻辑实现，"
+    },
+    {
+      "id": "s021",
+      "start": 609,
+      "end": 623,
+      "text": "可以简单理解为硬编码实现）\n"
+    },
+    {
+      "id": "s022",
+      "start": 623,
+      "end": 662,
+      "text": "首次LLM得到的输入：用户请求+skill简介清单（skill名字和描述列表，"
+    },
+    {
+      "id": "s023",
+      "start": 662,
+      "end": 670,
+      "text": "和对应的位置）\n"
+    },
+    {
+      "id": "s024",
+      "start": 670,
+      "end": 714,
+      "text": "LLM推理，选择是否需要加载skill，需要则调用工具定向读取对应skill的正文描述，"
+    },
+    {
+      "id": "s025",
+      "start": 714,
+      "end": 718,
+      "text": "并返回\n"
+    },
+    {
+      "id": "s026",
+      "start": 718,
+      "end": 763,
+      "text": "LLM按照skill正文详细说明执行任务，根据需求，判断是否需要调用工具读取其他配套文件，"
+    },
+    {
+      "id": "s027",
+      "start": 763,
+      "end": 782,
+      "text": "比如references下的参考文档等"
+    }
+  ]
+}

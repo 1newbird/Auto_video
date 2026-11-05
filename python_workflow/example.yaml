@@ -1,0 +1,24 @@
+# 复制为 config.yaml 后修改；相对路径以配置文件所在目录为基准。
+input_file: "input.md"       # UTF-8 Markdown 原稿
+output_dir: "output"         # 成片、历史、临时文件都在这里
+
+# 有声视频同时填写配套音频和字幕；无声视频两项都留空。
+audio_file: ""
+subtitle_file: ""            # 词级字幕使用 *.word.srt；句级字幕使用 *.srt
+关键词同步: true            # 词级输入直接使用时间；句级输入需可选对齐依赖
+显示字幕: true              # false：关闭画面字幕，保留声音、同步及 captions.srt
+
+视频:
+  清晰度: "1080p"          # 1080p / 1440p / 4K，均为竖屏
+  帧率: 30                  # 30 / 60
+
+保留渲染中间文件: false     # true：保留图片缓存便于排错或再次渲染
+复用计划: ""               # 对应历史 plan.json 路径，跳过模型
+feedback: ""               # 对同一输入的上次计划提出修改意见
+
+model:
+  base_url: ""             # Chat Completions 服务前缀，例如 https://服务地址/v1
+  name: ""                 # 服务的模型 ID
+  api_key: ""              # 建议留空，通过环境变量 LLM_API_KEY 提供
+  timeout_seconds: 1000     # 网络操作超时，并非整个渲染任务的时限
+  json_mode: true           # 服务不支持 response_format 时改为 false

@@ -1,0 +1,80 @@
+{
+  "pages": [
+    {
+      "id": "p1",
+      "title": "目标与方法",
+      "layout": "mixed",
+      "segments": [
+        "s001",
+        "s002"
+      ],
+      "elements": [
+        {
+          "id": "chapter1",
+          "kind": "section",
+          "title": "1. 明确目标",
+          "segment": "s001",
+          "elements": [
+            {
+              "id": "flow",
+              "kind": "flow",
+              "nodes": [
+                {
+                  "id": "goal",
+                  "title": "目标"
+                },
+                {
+                  "id": "steps",
+                  "title": "执行步骤",
+                  "red": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "chapter2",
+          "kind": "section",
+          "title": "2. 保存方法",
+          "segment": "s001",
+          "elements": [
+            {
+              "id": "note",
+              "kind": "note",
+              "segment": "s002",
+              "rows": [
+                {
+                  "id": "reuse",
+                  "kind": "text",
+                  "runs": [
+                    {
+                      "text": "有效方法，"
+                    },
+                    {
+                      "id": "key",
+                      "text": "直接复用",
+                      "red": true
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "gestures": [
+        {
+          "id": "g1",
+          "intent": "emphasize",
+          "kind": "underline",
+          "target": "key",
+          "segment": "s002",
+          "duration": 1.8,
+          "ink": true
+        }
+      ]
+    }
+  ],
+  "schemaVersion": 3,
+  "sourceHash": "8b54355e92a9566159cd45e99f946f2463309ff614f920eaa5dd27f015cb3fac"
+}

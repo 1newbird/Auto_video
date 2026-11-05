@@ -1,0 +1,28 @@
+{
+  "width":1080,"height":1920,"fps":30,"duration":20,
+  "paper":{"color":"#f1eee4","ink":"#292923","red":"#b94d3c","rotation":-0.65,"top":100},
+  "items":[
+    {"id":"eyebrow","at":0,"kind":"text","x":118,"y":132,"text":"AI 学习笔记","size":36,"color":"#716c60","rotate":-0.3},
+    {"id":"title","at":0,"kind":"text","x":110,"y":255,"text":"Skill 是什么？","size":91,"rotate":-0.6},
+    {"id":"title-line","at":0,"kind":"path","path":"M 117 284 Q 324 297 628 281","seed":31,"width":3,"roughness":0.7},
+    {"id":"intro","at":0,"kind":"text","x":119,"y":352,"text":"先抓住这两点。","size":45,"color":"#6a655a","rotate":0.25},
+    {"id":"point1","at":3,"kind":"text","x":113,"y":518,"text":"1. 把做事的方法，存下来","size":67,"rotate":-0.4},
+    {"id":"point1-note","at":3,"kind":"text","x":181,"y":604,"text":"目标、步骤、例子，放在一起。","size":52,"rotate":0.25},
+    {"id":"point1-underline","at":3,"kind":"path","path":"M 520 533 Q 581 539 656 531","seed":36,"width":2.8,"roughness":0.7,"color":"#b94d3c"},
+    {"id":"point2","at":7,"kind":"text","x":114,"y":794,"text":"2. 同类任务，下次接着用","size":67,"rotate":-0.2},
+    {"id":"point2-note","at":7,"kind":"text","x":180,"y":878,"text":"不用每次都从头交代。","size":52,"rotate":0.15},
+    {"id":"box1","at":10,"kind":"path","path":"M 180 960 L 501 955 L 505 1060 L 177 1065 Z","seed":41,"width":2.8,"roughness":0.75},
+    {"id":"box1-label","at":10,"kind":"text","x":224,"y":1031,"text":"明确任务","size":59,"rotate":-0.3},
+    {"id":"arrow1","at":10,"kind":"path","path":"M 340 1078 Q 345 1108 341 1141 M 327 1126 L 341 1142 L 356 1125","seed":42,"width":2.6,"roughness":0.6},
+    {"id":"box2","at":10,"kind":"path","path":"M 183 1158 L 504 1153 L 499 1260 L 178 1264 Z","seed":43,"width":2.8,"roughness":0.75},
+    {"id":"box2-label","at":10,"kind":"text","x":225,"y":1230,"text":"参考步骤","size":59,"rotate":0.2},
+    {"id":"note1","at":10,"kind":"text","x":570,"y":1030,"text":"要做什么","size":51,"color":"#b94d3c","rotate":-1.2},
+    {"id":"note2","at":10,"kind":"text","x":570,"y":1227,"text":"具体怎么做","size":51,"color":"#b94d3c","rotate":0.5},
+    {"id":"arrow2","at":13,"kind":"path","path":"M 339 1278 Q 336 1305 342 1336 M 326 1322 L 342 1337 L 355 1319","seed":45,"width":2.6,"roughness":0.6},
+    {"id":"box3","at":13,"kind":"path","path":"M 177 1354 L 501 1357 L 505 1463 L 181 1464 Z","seed":46,"width":2.8,"roughness":0.75},
+    {"id":"box3-label","at":13,"kind":"text","x":224,"y":1427,"text":"完成工作","size":59,"rotate":-0.2},
+    {"id":"note3","at":13,"kind":"text","x":569,"y":1425,"text":"检查结果","size":51,"color":"#b94d3c","rotate":-0.5},
+    {"id":"conclusion","at":16,"kind":"text","x":171,"y":1653,"text":"让经验，可以重复使用。","size":72,"color":"#b94d3c","rotate":-0.7},
+    {"id":"conclusion-circle","at":18,"kind":"path","path":"M 375 1586 C 491 1570 714 1577 738 1623 C 763 1681 545 1704 402 1679 C 346 1669 336 1617 380 1584","seed":52,"width":2.8,"roughness":0.8,"color":"#b94d3c"}
+  ]
+}

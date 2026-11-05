@@ -1,0 +1,66 @@
+{
+  "width":1080,"height":1920,"fps":30,"duration":36,
+  "paper":{"color":"#fdfdfc","ink":"#292c30","red":"#ab3d34","rotation":-0.55,"top":110,"finish":"white"},
+  "qa":{"staticHeaderHeight":340},
+  "items":[
+    {"id":"title","at":0,"kind":"text","x":320,"y":113,"text":"SKILL 是怎么加载的？","size":60,"rotate":-0.35},
+    {"id":"subtitle","at":0,"kind":"text","x":359,"y":173,"text":"结构回顾 → 五步加载流程","size":35,"color":"#494c4f"},
+    {"id":"title-under","at":0,"kind":"path","path":"M 323 132 Q 554 136 789 130","seed":101,"width":1.9,"roughness":0.6},
+
+    {"id":"structure-title","at":2,"kind":"text","x":93,"y":270,"text":"1. 一个 Skill 放什么？","size":44,"rotate":-0.35},
+    {"id":"directory","at":2,"kind":"text","x":118,"y":328,"text":"ppt-write/","size":41},
+    {"id":"tree","at":2,"kind":"path","path":"M 135 351 L 135 530 M 135 384 L 169 384 M 135 445 L 169 445 M 135 507 L 169 507","seed":102,"width":1.8,"roughness":0.65},
+    {"id":"main-file","at":2,"kind":"text","x":181,"y":395,"text":"SKILL.md","size":39},
+    {"id":"required","at":2,"kind":"text","x":370,"y":395,"text":"必需，大写","size":32,"color":"#ab3d34","rotate":-0.5},
+    {"id":"reference-dir","at":2,"kind":"text","x":181,"y":457,"text":"references/","size":38},
+    {"id":"other-dirs","at":2,"kind":"text","x":181,"y":520,"text":"scripts/   assets/","size":38},
+    {"id":"file-note","at":2,"kind":"text","x":120,"y":578,"text":"主文件 + 配套目录 / 文件","size":35,"color":"#494c4f"},
+
+    {"id":"md-title","at":6,"kind":"text","x":568,"y":270,"text":"2. SKILL.md 的组成","size":44,"rotate":0.2},
+    {"id":"name","at":6,"kind":"text","x":589,"y":338,"text":"name: ppt-write","size":40},
+    {"id":"name-note","at":6,"kind":"text","x":612,"y":388,"text":"小写字母、数字、连字符","size":34,"color":"#494c4f"},
+    {"id":"description","at":6,"kind":"text","x":589,"y":449,"text":"description: 准确、简洁","size":39},
+    {"id":"body","at":6,"kind":"text","x":589,"y":514,"text":"正文：具体说明、执行步骤","size":39},
+    {"id":"right-note","at":6,"kind":"text","x":629,"y":579,"text":"简介和正文，分开加载","size":35,"color":"#ab3d34","rotate":-0.6},
+    {"id":"divider","at":6,"kind":"path","path":"M 100 621 Q 515 625 977 618","seed":104,"width":1.5,"roughness":0.5,"color":"#808184"},
+
+    {"id":"flow-title","at":10,"kind":"text","x":95,"y":700,"text":"3. Harness 怎么加载？","size":46,"rotate":-0.2},
+    {"id":"harness-note","at":10,"kind":"text","x":132,"y":754,"text":"组织模型输入 · 调用工具 · 管理运行状态","size":35,"color":"#494c4f"},
+    {"id":"step1-box","at":10,"kind":"path","path":"M 133 807 L 474 805 L 477 889 L 131 892 Z","seed":110,"width":2,"roughness":0.7},
+    {"id":"step1","at":10,"kind":"text","x":304,"y":863,"text":"用户输入","size":43,"anchor":"middle"},
+    {"id":"step1-note","at":10,"kind":"text","x":555,"y":862,"text":"你的任务 / 问题","size":38},
+
+    {"id":"arrow1","at":14,"kind":"path","path":"M 304 904 Q 307 920 304 939 M 294 928 L 304 940 L 314 927","seed":111,"width":1.9,"roughness":0.55},
+    {"id":"step2-box","at":14,"kind":"path","path":"M 132 951 L 476 948 L 474 1033 L 133 1035 Z","seed":112,"width":2,"roughness":0.7},
+    {"id":"step2","at":14,"kind":"text","x":304,"y":1008,"text":"Harness 扫描","size":43,"anchor":"middle"},
+    {"id":"step2-note1","at":14,"kind":"text","x":555,"y":979,"text":"约定的 Skill 位置","size":37},
+    {"id":"step2-note2","at":14,"kind":"text","x":555,"y":1028,"text":"解析：名称 / 描述 / 路径","size":36},
+
+    {"id":"arrow2","at":18,"kind":"path","path":"M 303 1047 Q 300 1062 304 1078 M 294 1068 L 304 1079 L 314 1067","seed":113,"width":1.9,"roughness":0.55},
+    {"id":"step3-box","at":18,"kind":"path","path":"M 132 1091 L 476 1089 L 478 1191 L 130 1194 Z","seed":114,"width":2,"roughness":0.7},
+    {"id":"step3","at":18,"kind":"text","x":304,"y":1135,"text":"首次 LLM 输入","size":42,"anchor":"middle"},
+    {"id":"step3-sub","at":18,"kind":"text","x":304,"y":1176,"text":"用户请求 + Skill 简介清单","size":32,"anchor":"middle"},
+    {"id":"step3-note1","at":18,"kind":"text","x":555,"y":1127,"text":"先知道有哪些 Skill 可用","size":36},
+    {"id":"step3-note2","at":18,"kind":"text","x":555,"y":1175,"text":"名称、描述，以及所在位置","size":35},
+
+    {"id":"arrow3","at":22,"kind":"path","path":"M 304 1205 Q 306 1222 303 1238 M 293 1228 L 303 1239 L 313 1227","seed":115,"width":1.9,"roughness":0.55},
+    {"id":"step4-box","at":22,"kind":"path","path":"M 133 1252 L 474 1249 L 477 1354 L 131 1357 Z","seed":116,"width":2,"roughness":0.7},
+    {"id":"step4","at":22,"kind":"text","x":304,"y":1297,"text":"LLM 判断是否需要","size":40,"anchor":"middle"},
+    {"id":"step4-sub","at":22,"kind":"text","x":304,"y":1340,"text":"调用工具 → 读取正文","size":34,"anchor":"middle"},
+    {"id":"step4-note1","at":22,"kind":"text","x":555,"y":1297,"text":"需要时，才读取正文","size":39,"color":"#ab3d34"},
+    {"id":"step4-note2","at":22,"kind":"text","x":555,"y":1346,"text":"选择权在 LLM 的推理过程","size":35},
+    {"id":"step4-emphasis","at":22,"kind":"path","path":"M 553 1313 Q 632 1318 719 1311","seed":117,"width":1.9,"roughness":0.55,"color":"#ab3d34"},
+
+    {"id":"arrow4","at":27,"kind":"path","path":"M 303 1370 Q 299 1385 303 1399 M 293 1389 L 303 1400 L 313 1388","seed":118,"width":1.9,"roughness":0.55},
+    {"id":"step5-box","at":27,"kind":"path","path":"M 132 1413 L 475 1410 L 478 1516 L 131 1518 Z","seed":119,"width":2,"roughness":0.7},
+    {"id":"step5","at":27,"kind":"text","x":304,"y":1458,"text":"按正文说明执行任务","size":40,"anchor":"middle"},
+    {"id":"step5-sub","at":27,"kind":"text","x":304,"y":1501,"text":"按需读取其他配套文件","size":34,"anchor":"middle"},
+    {"id":"step5-note1","at":27,"kind":"text","x":555,"y":1457,"text":"例如 references 里的参考文档","size":35},
+    {"id":"step5-note2","at":27,"kind":"text","x":555,"y":1505,"text":"用到哪份，就读取哪份","size":35},
+
+    {"id":"summary-label","at":32,"kind":"text","x":117,"y":1614,"text":"渐进式加载：","size":43},
+    {"id":"summary","at":32,"kind":"text","x":354,"y":1614,"text":"简介 → 正文 → 配套文件","size":43,"color":"#ab3d34","rotate":-0.25},
+    {"id":"summary-under","at":32,"kind":"path","path":"M 358 1633 Q 592 1640 849 1630","seed":122,"width":2,"roughness":0.65,"color":"#ab3d34"},
+    {"id":"summary-note","at":32,"kind":"text","x":145,"y":1700,"text":"按需读取，不是一次全塞进上下文。","size":39,"rotate":-0.2}
+  ]
+}

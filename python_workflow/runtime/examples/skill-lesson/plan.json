@@ -1,0 +1,325 @@
+{
+  "schemaVersion": 1,
+  "sourceHash": "c8bf70d944b68b0c2399206ddf3058a018c5846d1eae802b0e95b61ae909d975",
+  "unitsPerSecond": 4.2,
+  "pages": [
+    {
+      "id": "structure",
+      "title": "SKILL 加载机制",
+      "subtitle": "先回顾结构，再看 Harness 怎么加载",
+      "layout": "notes",
+      "segments": [
+        "s001",
+        "s002",
+        "s003",
+        "s004",
+        "s005",
+        "s006",
+        "s007",
+        "s008",
+        "s009",
+        "s010",
+        "s011",
+        "s012",
+        "s013",
+        "s014",
+        "s015",
+        "s016",
+        "s017"
+      ],
+      "blocks": [
+        {
+          "id": "folder",
+          "title": "1. 一个 Skill 的目录",
+          "segment": "s003",
+          "column": 0,
+          "lines": [
+            {
+              "id": "folder-name",
+              "text": "ppt-write/",
+              "segment": "s004"
+            },
+            {
+              "id": "main-file",
+              "text": "SKILL.md",
+              "segment": "s005"
+            },
+            {
+              "id": "required",
+              "text": "主体、必需、字母大写",
+              "segment": "s005",
+              "red": true
+            },
+            {
+              "id": "references",
+              "text": "references/",
+              "segment": "s006"
+            },
+            {
+              "id": "scripts",
+              "text": "scripts/    assets/",
+              "segment": "s006"
+            }
+          ]
+        },
+        {
+          "id": "format",
+          "title": "2. SKILL.md 的组成",
+          "segment": "s007",
+          "column": 1,
+          "lines": [
+            {
+              "id": "name",
+              "text": "name: ppt-write",
+              "segment": "s008"
+            },
+            {
+              "id": "name-rule",
+              "text": "小写字母、数字、连字符",
+              "segment": "s008"
+            },
+            {
+              "id": "description",
+              "text": "description: 描述",
+              "segment": "s010"
+            },
+            {
+              "id": "description-note",
+              "text": "准确，不冗余",
+              "segment": "s010",
+              "red": true
+            },
+            {
+              "id": "body",
+              "text": "正文：详细说明",
+              "segment": "s011"
+            }
+          ]
+        },
+        {
+          "id": "loading",
+          "title": "3. 渐进式加载",
+          "segment": "s012",
+          "column": 0,
+          "lines": [
+            {
+              "id": "on-demand",
+              "text": "按需读取 Skill",
+              "segment": "s012",
+              "red": true
+            },
+            {
+              "id": "question",
+              "text": "具体由 Harness 怎么实现？",
+              "segment": "s013"
+            }
+          ]
+        },
+        {
+          "id": "harness",
+          "title": "4. Harness 负责什么",
+          "segment": "s014",
+          "column": 1,
+          "lines": [
+            {
+              "id": "harness-jobs",
+              "text": "组织输入 → 调用工具\n→ 管理运行状态",
+              "segment": "s014"
+            },
+            {
+              "id": "harness-note",
+              "text": "关注让任务运行的程序逻辑",
+              "segment": "s016",
+              "red": true
+            }
+          ]
+        }
+      ],
+      "gestures": [
+        {
+          "id": "point-file",
+          "kind": "point",
+          "target": "main-file",
+          "segment": "s005",
+          "quote": "SKILL.md",
+          "duration": 2.2,
+          "ink": false
+        },
+        {
+          "id": "sweep-name",
+          "kind": "sweep",
+          "target": "name-rule",
+          "segment": "s008",
+          "quote": "小写字母",
+          "duration": 2.8,
+          "ink": false
+        },
+        {
+          "id": "air-description",
+          "kind": "orbit",
+          "target": "description-note",
+          "segment": "s010",
+          "quote": "要求准确",
+          "duration": 2.5,
+          "ink": false
+        },
+        {
+          "id": "mark-demand",
+          "kind": "underline",
+          "target": "on-demand",
+          "segment": "s012",
+          "quote": "按需读取",
+          "duration": 2.3,
+          "ink": true
+        },
+        {
+          "id": "guide-harness",
+          "kind": "sweep",
+          "target": "harness-jobs",
+          "segment": "s014",
+          "quote": "组织模型输入",
+          "duration": 3.2,
+          "ink": false
+        }
+      ]
+    },
+    {
+      "id": "flow",
+      "title": "五步：按需读取 Skill",
+      "subtitle": "从用户请求，到执行任务",
+      "layout": "flow",
+      "segments": [
+        "s018",
+        "s019",
+        "s020",
+        "s021",
+        "s022",
+        "s023",
+        "s024",
+        "s025",
+        "s026",
+        "s027"
+      ],
+      "steps": [
+        {
+          "id": "input",
+          "title": "1. 用户输入",
+          "segment": "s019",
+          "notes": [
+            {
+              "id": "input-note",
+              "text": "用户提出任务或问题"
+            }
+          ]
+        },
+        {
+          "id": "scan",
+          "title": "2. Harness 扫描",
+          "detail": "约定的 Skill 位置",
+          "segment": "s020",
+          "notes": [
+            {
+              "id": "scan-fields",
+              "text": "解析：名称 / 描述 / 路径"
+            },
+            {
+              "id": "scan-note",
+              "text": "由程序逻辑完成",
+              "segment": "s021",
+              "red": true
+            }
+          ]
+        },
+        {
+          "id": "first-input",
+          "title": "3. 首次 LLM 输入",
+          "detail": "用户请求 + Skill 简介清单",
+          "segment": "s022",
+          "notes": [
+            {
+              "id": "first-fields",
+              "text": "Skill 名称、描述、位置"
+            },
+            {
+              "id": "first-note",
+              "text": "先了解有哪些 Skill 可用"
+            }
+          ]
+        },
+        {
+          "id": "choose",
+          "title": "4. LLM 推理选择",
+          "detail": "调用工具，读取对应正文",
+          "segment": "s024",
+          "notes": [
+            {
+              "id": "choose-note",
+              "text": "需要时才读取正文",
+              "red": true
+            },
+            {
+              "id": "choose-tool",
+              "text": "读取结果返回给模型"
+            }
+          ]
+        },
+        {
+          "id": "execute",
+          "title": "5. 按正文执行任务",
+          "detail": "判断是否需要配套文件",
+          "segment": "s026",
+          "notes": [
+            {
+              "id": "extra",
+              "text": "按需调用工具读取配套文件"
+            },
+            {
+              "id": "extra-example",
+              "text": "例如 references 下的文档",
+              "segment": "s027"
+            }
+          ]
+        }
+      ],
+      "gestures": [
+        {
+          "id": "scan-fields-guide",
+          "kind": "sweep",
+          "target": "scan-fields",
+          "segment": "s020",
+          "quote": "解析名称",
+          "duration": 2.6,
+          "ink": false
+        },
+        {
+          "id": "first-point",
+          "kind": "point",
+          "target": "first-fields",
+          "segment": "s022",
+          "quote": "简介清单",
+          "duration": 2.6,
+          "ink": false
+        },
+        {
+          "id": "choose-air",
+          "kind": "orbit",
+          "target": "choose-note",
+          "segment": "s024",
+          "quote": "需要则",
+          "duration": 2.8,
+          "ink": false
+        },
+        {
+          "id": "execute-link",
+          "kind": "link",
+          "target": "execute",
+          "segment": "s026",
+          "quote": "根据需求",
+          "duration": 2.7,
+          "ink": false,
+          "to": "extra"
+        }
+      ]
+    }
+  ]
+}

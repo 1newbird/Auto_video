@@ -1,0 +1,221 @@
+{
+  "id": "p2",
+  "title": "Harness 自动选择 Skill",
+  "layout": "mixed",
+  "segments": [
+    "s012",
+    "s013",
+    "s014",
+    "s015",
+    "s016",
+    "s017",
+    "s018",
+    "s019",
+    "s020",
+    "s021",
+    "s022",
+    "s023",
+    "s024",
+    "s025",
+    "s026"
+  ],
+  "elements": [
+    {
+      "id": "secHarness",
+      "kind": "section",
+      "title": "3. Harness 的职责",
+      "segment": "s012",
+      "elements": [
+        {
+          "id": "harnessTree",
+          "kind": "tree",
+          "title": "职责",
+          "segment": "s014",
+          "rows": [
+            {
+              "id": "harnessRoot",
+              "kind": "text",
+              "segment": "s014",
+              "runs": [
+                {
+                  "text": "负责 Agent 运行的一层程序"
+                }
+              ],
+              "children": [
+                {
+                  "id": "inputOrg",
+                  "kind": "text",
+                  "segment": "s014",
+                  "runs": [
+                    {
+                      "text": "组织模型输入"
+                    }
+                  ]
+                },
+                {
+                  "id": "toolCall",
+                  "kind": "text",
+                  "segment": "s014",
+                  "runs": [
+                    {
+                      "text": "调用工具"
+                    }
+                  ]
+                },
+                {
+                  "id": "stateMgmt",
+                  "kind": "text",
+                  "segment": "s014",
+                  "runs": [
+                    {
+                      "text": "管理运行状态"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "vendorNote",
+          "kind": "note",
+          "segment": "s015",
+          "rows": [
+            {
+              "id": "vendorRow",
+              "kind": "text",
+              "segment": "s015",
+              "runs": [
+                {
+                  "text": "厂商定义不一（OpenAI / Anthropic），"
+                },
+                {
+                  "id": "focusFunc",
+                  "text": "抓住功能即可",
+                  "red": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "agentNote",
+          "kind": "note",
+          "segment": "s016",
+          "rows": [
+            {
+              "id": "agentRow",
+              "kind": "text",
+              "segment": "s016",
+              "runs": [
+                {
+                  "text": "目标：让 Agent 跑起来并完成任务"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "secFlow",
+      "kind": "section",
+      "title": "4. 自动选择 Skill 五步",
+      "segment": "s017",
+      "elements": [
+        {
+          "id": "skillFlow",
+          "kind": "flow",
+          "direction": "vertical",
+          "segment": "s017",
+          "nodes": [
+            {
+              "id": "nRequest",
+              "title": "用户请求",
+              "segment": "s018"
+            },
+            {
+              "id": "nScan",
+              "title": "扫描 Skill 位置",
+              "detail": "解析名称、描述、路径",
+              "segment": "s019"
+            },
+            {
+              "id": "nPrompt",
+              "title": "请求 + 简介清单",
+              "detail": "名称 / 描述 / 位置",
+              "segment": "s022"
+            },
+            {
+              "id": "nRead",
+              "title": "按需读取 SKILL.md",
+              "detail": "工具返回正文",
+              "segment": "s024"
+            },
+            {
+              "id": "nExecute",
+              "title": "按正文执行任务",
+              "detail": "按需读 references",
+              "segment": "s025"
+            }
+          ]
+        },
+        {
+          "id": "simpleNote",
+          "kind": "note",
+          "segment": "s026",
+          "rows": [
+            {
+              "id": "simpleRow",
+              "kind": "text",
+              "segment": "s026",
+              "runs": [
+                {
+                  "text": "五步流程可自行实现"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "gestures": [
+    {
+      "id": "g1",
+      "intent": "emphasize",
+      "kind": "circle",
+      "target": "focusFunc",
+      "segment": "s015",
+      "quote": "不同厂商的说法也不完全一样",
+      "ink": true
+    },
+    {
+      "id": "g2",
+      "intent": "emphasize",
+      "kind": "underline",
+      "target": "nScan",
+      "segment": "s019",
+      "quote": "扫描约定的Skill位置",
+      "ink": true
+    },
+    {
+      "id": "g3",
+      "intent": "emphasize",
+      "kind": "circle",
+      "target": "nPrompt",
+      "segment": "s022",
+      "quote": "Skill的名字、描述和对应的位置",
+      "ink": true
+    },
+    {
+      "id": "g4",
+      "intent": "emphasize",
+      "kind": "underline",
+      "target": "nRead",
+      "segment": "s024",
+      "quote": "调用工具读取对应的SKILL.md",
+      "ink": true
+    }
+  ]
+}

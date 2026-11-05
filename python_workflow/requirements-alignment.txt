@@ -1,0 +1,4 @@
+# Install torch/torchaudio CPU wheels first; see README.
+funasr==1.2.6
+torch==2.6.0
+torchaudio==2.6.0
