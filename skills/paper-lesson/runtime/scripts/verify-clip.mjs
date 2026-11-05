@@ -1,0 +1,17 @@
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import {fileURLToPath} from 'node:url';
+import {createRequire} from 'node:module';
+import {spawnSync} from 'node:child_process';
+import {hash} from './lib/text.mjs';
+import {validateLesson} from './lib/validate-lesson.mjs';
+const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
+const out=path.resolve(process.argv[2]??'out/lesson-v2');
+const manifest=JSON.parse(await fs.readFile(path.join(out,'clip-manifest.json'),'utf8'));
+validateLesson(manifest.lesson);
+if(hash(JSON.stringify(manifest.lesson))!==manifest.lessonHash)throw new Error('Clip manifest hash mismatch');
+const current=JSON.parse(await fs.readFile(manifest.source,'utf8'));
+if(hash(JSON.stringify(current))!==manifest.lessonHash)throw new Error('Lesson changed after clip render');
+const compositor=path.dirname(createRequire(import.meta.url).resolve('@remotion/compositor-win32-x64-msvc'));
+const result=spawnSync(process.env.PAPER_LESSON_PYTHON||'python',[path.join(root,'scripts/clip_qa.py'),out,compositor],{encoding:'utf8',windowsHide:true,maxBuffer:8*1024*1024});
+process.stdout.write(result.stdout??'');process.stderr.write(result.stderr??'');if(result.status!==0)process.exitCode=1;

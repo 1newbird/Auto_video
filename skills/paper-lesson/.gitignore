@@ -1,0 +1,15 @@
+runtime/node_modules/
+runtime/.venv/
+runtime/.cache/
+__pycache__/
+*.pyc
+jobs/
+/settings.json
+output/
+.tmp/
+.cache/
+runtime/.remotion/
+runtime/build/
+runtime/out/
+.paper-lesson-align/
+*.log

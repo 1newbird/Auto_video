@@ -1,0 +1,42 @@
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import {fileURLToPath} from 'node:url';
+import {createRequire} from 'node:module';
+import {spawnSync} from 'node:child_process';
+import {hash} from './lib/text.mjs';
+import {validateLesson} from './lib/validate-lesson.mjs';
+const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
+const out=path.resolve(process.argv[2]??path.join(root,'out/lesson-v1'));
+const regression=process.argv.includes('--regression'),started=performance.now();
+const manifest=JSON.parse(await fs.readFile(path.join(out,'render-manifest.json'),'utf8'));
+const lesson=manifest.lesson;validateLesson(lesson);
+const failures=[];const check=(ok,message)=>{if(!ok)failures.push(message);};
+check(manifest.videoRendered,'Video was not rendered');
+check(hash(JSON.stringify(lesson))===manifest.lessonHash,'Manifest hash mismatch');
+const current=JSON.parse(await fs.readFile(path.join(out,'lesson.json'),'utf8'));
+check(hash(JSON.stringify(current))===manifest.lessonHash,'Compiled lesson changed after rendering');
+const compositor=path.dirname(createRequire(import.meta.url).resolve('@remotion/compositor-win32-x64-msvc'));
+const probe=spawnSync(path.join(compositor,'ffprobe.exe'),['-v','error',...(regression?['-count_frames']:[]),'-show_streams','-show_format','-of','json',path.join(out,'lesson.mp4')],{encoding:'utf8',windowsHide:true});
+if(probe.status!==0)throw new Error(probe.stderr);
+const metadata=JSON.parse(probe.stdout),video=metadata.streams.find(s=>s.codec_type==='video');
+check(video?.codec_name==='h264'&&video?.pix_fmt==='yuv420p','Incorrect encoding');
+check(video?.width===lesson.width&&video?.height===lesson.height,'Incorrect dimensions');
+check(video?.avg_frame_rate===`${lesson.fps}/1`,'Incorrect frame rate');
+check(Number(regression?video?.nb_read_frames:video?.nb_frames)===lesson.durationFrames,regression?'Incorrect decoded frame count':'Incorrect container frame count');
+check(Math.abs(Number(metadata.format.duration)-lesson.duration)<1/lesson.fps,'Incorrect duration');
+const audio=metadata.streams.find(s=>s.codec_type==='audio');
+if(lesson.audio) {
+  check(audio?.codec_name==='aac','Expected narration audio');
+  check(audio?.channels===lesson.audio.channels,'Incorrect audio channels');
+  check(Math.abs(Number(audio?.duration)-lesson.audio.duration)<.15,'Narration duration changed');
+} else check(!audio,'Expected silent video');
+await fs.writeFile(path.join(out,'video-metadata.json'),JSON.stringify(metadata,null,2));
+if(regression) {
+  const qa=spawnSync(process.env.PAPER_LESSON_PYTHON||'python',[path.join(root,'scripts/lesson_qa.py'),out,path.join(compositor,'ffmpeg.exe')],{encoding:'utf8',windowsHide:true,maxBuffer:8*1024*1024});
+  process.stdout.write(qa.stdout??'');if(qa.status!==0)failures.push(qa.stderr||'Image/video QA failed');
+}
+const active=lesson.pages.flatMap(p=>p.gestures).reduce((n,g)=>n+g.endFrame-g.startFrame,0);
+const result={passed:failures.length===0,failures,mode:regression?'regression':'daily',verificationSeconds:(performance.now()-started)/1000,video:{codec:video?.codec_name,width:video?.width,height:video?.height,fps:lesson.fps,frames:Number(regression?video?.nb_read_frames:video?.nb_frames),duration:Number(metadata.format.duration),bytes:Number(metadata.format.size)},pages:lesson.pages.length,captions:lesson.captions.length,gestureCount:lesson.pages.flatMap(p=>p.gestures).length,penVisibleFraction:active/lesson.durationFrames,sourceHash:lesson.sourceHash,timingMode:lesson.timingMode};
+if(audio)result.audio={codec:audio.codec_name,duration:Number(audio.duration),sampleRate:Number(audio.sample_rate),channels:audio.channels,sourceSha256:lesson.audio?.sha256};
+await fs.writeFile(path.join(out,'verification.json'),JSON.stringify(result,null,2));console.log(JSON.stringify(result,null,2));
+if(failures.length)process.exitCode=1;
